@@ -1,4 +1,5 @@
 import { getArtifact } from '../data/artifacts.js';
+import { getEvent } from '../data/timeline.js';
 import { store } from './store.js';
 import { on } from './dom.js';
 
@@ -11,25 +12,28 @@ export const SCREENS = Object.freeze({
   badge:    { title: 'Expedition complete', world: null },
 });
 
-export const hashFor = (screen, artifactId) => `#/${screen}${artifactId ? `/${encodeURIComponent(artifactId)}` : ''}`;
+export const hashFor = (screen, artifactId, eventId) =>
+  `#/${screen}${artifactId ? `/${encodeURIComponent(artifactId)}${eventId ? `/${encodeURIComponent(eventId)}` : ''}` : ''}`;
 
 function parse(hash) {
   let parts = [];
   try { parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent); } catch { /* malformed */ }
-  return { screen: parts[0] ?? 'landing', artifactId: parts[1] ?? null };
+  return { screen: parts[0] ?? 'landing', artifactId: parts[1] ?? null, eventId: parts[2] ?? null };
 }
 
 /** Turn a requested route into a valid, allowed one. */
-function resolve({ screen, artifactId }) {
-  if (!(screen in SCREENS)) return { screen: 'landing', artifactId: null };
+function resolve({ screen, artifactId, eventId }) {
+  if (!(screen in SCREENS)) return { screen: 'landing', artifactId: null, eventId: null };
   if (artifactId) {
     const a = getArtifact(artifactId);
     if (!a || (screen !== 'moon' && screen !== 'mars')) artifactId = null;
     else screen = a.world; // deep links land on the artifact's own world
   }
+  // A milestone is only valid alongside an artifact it relates to.
+  if (!artifactId || !getEvent(eventId)?.artifactIds.includes(artifactId)) eventId = null;
   if (screen === 'quiz' && !store.isQuizUnlocked()) return { screen: 'moon', artifactId: null, redirectedFrom: 'quiz' };
   if (screen === 'badge' && !store.hasBadge()) return { screen: store.isQuizUnlocked() ? 'quiz' : 'moon', artifactId: null, redirectedFrom: 'badge' };
-  return { screen, artifactId };
+  return { screen, artifactId, eventId };
 }
 
 /** Emits 'route' with { screen, artifactId, previous, redirectedFrom }. */
@@ -39,8 +43,8 @@ export class Router extends EventTarget {
   constructor({ screens, announcer }) { super(); this.#screens = screens; this.#announcer = announcer; }
   get current() { return this.#current; }
   /** replace: true updates the URL without adding a history entry (used for marker selection). */
-  go(screen, artifactId, { replace = false } = {}) {
-    const h = hashFor(screen, artifactId);
+  go(screen, artifactId, { replace = false, eventId = null } = {}) {
+    const h = hashFor(screen, artifactId, eventId);
     if (replace) { history.replaceState(null, '', h); this.#sync(); } else location.hash = h;
   }
 
@@ -52,11 +56,11 @@ export class Router extends EventTarget {
 
   #sync() {
     const target = resolve(parse(location.hash));
-    const canonical = hashFor(target.screen, target.artifactId);
+    const canonical = hashFor(target.screen, target.artifactId, target.eventId);
     if (location.hash !== canonical) history.replaceState(null, '', canonical);
     const prev = this.#current;
-    if (prev && prev.screen === target.screen && prev.artifactId === target.artifactId) return;
-    this.#current = { screen: target.screen, artifactId: target.artifactId };
+    if (prev && prev.screen === target.screen && prev.artifactId === target.artifactId && prev.eventId === target.eventId) return;
+    this.#current = { screen: target.screen, artifactId: target.artifactId, eventId: target.eventId };
     if (!prev || prev.screen !== target.screen) this.#activate(target.screen, prev?.screen);
     this.dispatchEvent(new CustomEvent('route', { detail: { ...this.#current, previous: prev, redirectedFrom: target.redirectedFrom ?? null } }));
   }

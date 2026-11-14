@@ -79,4 +79,3 @@ export const ARTIFACTS = Object.freeze([
 export const ARTIFACT_IDS = Object.freeze(ARTIFACTS.map((a) => a.id));
 export const getArtifact = (id) => ARTIFACTS.find((a) => a.id === id) ?? null;
 export const artifactsByWorld = (world) => ARTIFACTS.filter((a) => a.world === world);
-export const timelineFor = (world) => artifactsByWorld(world).sort((a, b) => a.date.localeCompare(b.date));

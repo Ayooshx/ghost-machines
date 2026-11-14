@@ -25,15 +25,17 @@ export function createMap(canvas, { onSelect }) {
   on(canvas, 'click', (e) => { const m = e.target.closest('.marker'); if (m) onSelect(m.dataset.id); });
   rovingKeys(canvas, '.marker');
 
-  let selected = null;
+  let selected = null, related = new Set();
   const refresh = () => {
     for (const [world, { markers }] of Object.entries(worlds)) {
       for (const m of markers) {
         const a = artifactsByWorld(world).find((x) => x.id === m.dataset.id);
         const status = store.getStatus(a.id);
         m.dataset.status = status;
+        const rel = related.has(a.id) && a.id !== selected;
+        m.dataset.related = String(rel);
         m.setAttribute('aria-pressed', String(a.id === selected));
-        m.setAttribute('aria-label', `${a.shortName}, ${WORLD_NAME[world]}. ${STATUS_LABEL[status]}.`);
+        m.setAttribute('aria-label', `${a.shortName}, ${WORLD_NAME[world]}. ${STATUS_LABEL[status]}.${rel ? ' Related to the selected milestone.' : ''}`);
       }
     }
   };
@@ -46,7 +48,7 @@ export function createMap(canvas, { onSelect }) {
         layer.toggleAttribute('inert', w !== world);
       }
     },
-    setSelected(id) { selected = id; refresh(); },
+    setSelected(id, relatedIds = []) { selected = id; related = new Set(relatedIds); refresh(); },
     refresh,
   };
 }
