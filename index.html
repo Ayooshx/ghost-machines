@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GHOST MACHINES · A Tour of NASA’s Left-Behind Explorers</title>
+<meta name="description" content="Explore the abandoned NASA robots on the Moon and Mars as a space archaeologist.">
+<meta name="theme-color" content="#04060c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%235ad8ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ffb454'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components/glass-panel.css">
+<link rel="stylesheet" href="css/components/landing.css">
+<link rel="stylesheet" href="css/components/explorer.css">
+<link rel="stylesheet" href="css/components/dossier.css">
+<link rel="stylesheet" href="css/components/transmission.css">
+<script type="module" src="js/main.js"></script>
+</head>
+<body data-screen="landing" data-world="deep">
+<a class="skip-link" href="#main">Skip to content</a>
+<noscript><p class="noscript">GHOST MACHINES needs JavaScript to run.</p></noscript>
+
+<div id="starfield" class="starfield" aria-hidden="true"></div>
+<div class="atmosphere" aria-hidden="true">
+  <div class="atmosphere__layer atmosphere__layer--moon"></div>
+  <div class="atmosphere__layer atmosphere__layer--mars"></div>
+</div>
+
+<header class="hud" id="hud">
+  <a class="hud__brand" href="#/landing"><span class="hud__mark" aria-hidden="true"></span>Ghost Machines</a>
+  <span class="hud__sector"><span class="hud__sector-label">Planet</span><span class="hud__planet" data-planet="moon" aria-hidden="true"></span><span data-sector>Moon</span></span>
+  <nav class="hud__nav" aria-label="Expedition">
+    <a href="#/landing" data-nav="landing">Home</a>
+    <a href="#/quiz" data-nav="quiz">Quiz</a>
+    <a href="#/badge" data-nav="badge" hidden>Badge</a>
+  </nav>
+  <div class="hud__progress">
+    <span>Cataloged</span>
+    <span class="hud__bar" data-progress-bar aria-hidden="true"></span>
+    <span data-progress-count>0 / 8</span>
+  </div>
+</header>
+
+<main id="main" class="stage" tabindex="-1">
+  <section class="screen screen--bare landing" data-screen="landing" aria-labelledby="landing-title">
+    <div class="landing__orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="landing__horizon" aria-hidden="true"></div>
+    <div class="landing__scan" aria-hidden="true"></div>
+    <div class="landing__inner">
+      <p class="landing__class"><span class="landing__class-dot" aria-hidden="true"></span>Mission classification: unrecovered hardware</p>
+      <h1 id="landing-title" class="landing__title" data-screen-title tabindex="-1">GHOST MACHINES</h1>
+      <p class="landing__subtitle">A Tour of NASA’s Left-Behind Explorers</p>
+      <span class="landing__rule" aria-hidden="true"></span>
+      <p class="landing__intro">Some machines do not come home. They stay behind on alien worlds—silent, weathered, and still holding the story of how humans learned to explore.</p>
+      <a class="btn landing__cta" href="#/moon" data-begin>Begin expedition</a>
+    </div>
+  </section>
+
+  <section class="screen screen--explore explorer" data-screen="moon mars" aria-labelledby="explorer-title">
+    <h1 id="explorer-title" class="sr-only" data-screen-title tabindex="-1">Exploration console</h1>
+    <div class="explorer__grid">
+      <section class="explorer__map glass" aria-label="Planetary map">
+        <div class="map__bar">
+          <div class="tabs" role="tablist" aria-label="Choose a world" data-tabs>
+            <button class="tab" role="tab" id="tab-moon" aria-controls="map-stage" data-world="moon" type="button">Moon</button>
+            <button class="tab" role="tab" id="tab-mars" aria-controls="map-stage" data-world="mars" type="button">Mars</button>
+          </div>
+          <p class="map__note">Simplified illustration. Marker positions are approximate. Unofficial project, not affiliated with NASA.</p>
+        </div>
+        <div class="map__stage" id="map-stage" role="tabpanel"><div class="map__canvas" data-canvas></div></div>
+      </section>
+      <aside class="explorer__panel glass" aria-label="Selected artifact" data-panel></aside>
+      <nav class="explorer__timeline glass" aria-label="Historical timeline"><ol class="tl" data-timeline></ol></nav>
+    </div>
+    <dialog class="dossier glass" data-dossier></dialog>
+  </section>
+
+  <section class="screen" data-screen="quiz" aria-labelledby="quiz-title">
+    <div class="screen__inner">
+      <h1 id="quiz-title" data-screen-title tabindex="-1">Junior Space Archaeologist quiz</h1>
+      <div class="glass panel"><p>Quiz arrives in Phase 8.</p></div>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="badge" aria-labelledby="badge-title">
+    <div class="screen__inner">
+      <h1 id="badge-title" data-screen-title tabindex="-1">Expedition complete</h1>
+      <div class="glass panel"><p>Badge arrives in Phase 9.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-note">Unofficial educational project. Not affiliated with or endorsed by NASA.</footer>
+<div id="route-announcer" class="sr-only" aria-live="polite"></div>
+</body>
+</html>

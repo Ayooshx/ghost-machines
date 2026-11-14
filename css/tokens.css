@@ -1,0 +1,38 @@
+:root {
+  /* Color */
+  --void: #04060c;
+  --midnight: #0a1226;
+  --navy: #12204a;
+  --cyan: #5ad8ff;
+  --amber: #ffb454;
+  --ink: #e8eef9;
+  --ink-dim: #8a9bb8;
+  --line: rgba(90, 216, 255, .18);
+  --line-strong: rgba(90, 216, 255, .4);
+  --glass-bg: rgba(10, 18, 38, .58);
+
+  /* Type */
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-xs: .75rem;
+  --text-sm: .875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: clamp(2rem, 4vw, 3rem);
+  --text-hero: clamp(2.75rem, 9vw, 7rem);
+
+  /* Space (4px base) */
+  --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+  --sp-5: 1.5rem; --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4rem;
+
+  /* Motion */
+  --dur-fast: 150ms; --dur-base: 300ms; --dur-slow: 600ms; --dur-cinema: 1200ms;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+
+  /* Layout and layers */
+  --hud-h: 3.5rem;
+  --hud-total: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
+  --z-stars: 0; --z-atmos: 1; --z-screen: 10; --z-hud: 50; --z-dossier: 60; --z-celebrate: 80;
+}

@@ -1,0 +1,63 @@
+/* Backdrop: base gradient lives on the starfield; glows sit above the stars */
+.starfield { position: fixed; inset: 0; z-index: var(--z-stars); overflow: hidden; pointer-events: none;
+  background: linear-gradient(180deg, var(--void) 0%, #060a18 55%, var(--midnight) 100%); }
+.star-layer { position: absolute; top: 0; left: 0; border-radius: 50%; background: transparent; will-change: transform;
+  animation: twinkle var(--twinkle-dur, 6s) ease-in-out var(--twinkle-delay, 0s) infinite alternate; }
+.starfield.is-paused .star-layer { animation-play-state: paused; }
+
+.atmosphere { position: fixed; inset: 0; z-index: var(--z-atmos); pointer-events: none; }
+.atmosphere__layer { position: absolute; inset: 0; opacity: 0; transition: opacity var(--dur-cinema) var(--ease-out); }
+.atmosphere__layer--moon { background: radial-gradient(90% 60% at 70% 105%, rgba(90, 216, 255, .16), transparent 70%), radial-gradient(70% 50% at 10% 0%, rgba(18, 32, 74, .7), transparent 70%); }
+.atmosphere__layer--mars { background: radial-gradient(90% 60% at 30% 105%, rgba(255, 140, 70, .16), transparent 70%), radial-gradient(70% 50% at 90% 0%, rgba(40, 20, 40, .6), transparent 70%); }
+body[data-world="deep"] .atmosphere__layer--moon { opacity: .55; }
+body[data-world="moon"] .atmosphere__layer--moon,
+body[data-world="mars"] .atmosphere__layer--mars { opacity: 1; }
+
+/* Screens: one active at a time; inactive ones are inert, hidden and non-focusable */
+.stage { position: fixed; inset: 0; z-index: var(--z-screen); }
+.screen {
+  position: absolute; inset: 0; overflow: auto; padding-top: var(--hud-total);
+  opacity: 0; visibility: hidden; transform: translateY(8px); pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out), visibility 0s linear var(--dur-slow);
+}
+.screen.is-active { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition-delay: 0s; }
+.screen--bare { padding-top: 0; }
+.screen__inner { width: min(72rem, 100%); margin: 0 auto; padding: var(--sp-6) var(--sp-5) var(--sp-8); }
+.screen__inner > h1 { margin-bottom: var(--sp-5); }
+
+/* HUD */
+.hud {
+  position: fixed; inset: 0 0 auto 0; z-index: var(--z-hud);
+  display: flex; align-items: center; gap: var(--sp-6);
+  height: var(--hud-total); padding: env(safe-area-inset-top, 0px) var(--sp-5) 0;
+  background: linear-gradient(180deg, rgba(4, 6, 12, .9), rgba(4, 6, 12, .35));
+  border-bottom: 1px solid var(--line);
+  font: var(--text-xs)/1 var(--font-mono); letter-spacing: .06em;
+  transition: opacity var(--dur-slow) var(--ease-out), visibility 0s;
+}
+body[data-screen="landing"] .hud { opacity: 0; visibility: hidden; transition: opacity var(--dur-base), visibility 0s linear var(--dur-base); }
+.hud a { color: var(--ink-dim); text-decoration: none; transition: color var(--dur-fast); }
+.hud a:hover { color: var(--cyan); }
+.hud__brand { display: flex; align-items: center; gap: var(--sp-2); color: var(--ink) !important; white-space: nowrap; }
+.hud__mark { position: relative; width: 14px; height: 14px; border: 1px solid var(--cyan); border-radius: 50%; }
+.hud__mark::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--amber); }
+.hud__nav { display: flex; gap: var(--sp-5); overflow-x: auto; scrollbar-width: none; }
+.hud__nav a { padding: var(--sp-2) 0; border-bottom: 1px solid transparent; }
+.hud__nav a[aria-current="page"] { color: var(--cyan); border-color: var(--cyan); }
+.hud__nav a[aria-disabled="true"] { opacity: .4; cursor: not-allowed; }
+.hud__sector { display: flex; align-items: center; gap: var(--sp-2); color: var(--ink); white-space: nowrap; }
+.hud__sector-label { color: var(--ink-dim); }
+.hud__planet { width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--cyan) 60%, #1b5f78); box-shadow: 0 0 10px rgba(90, 216, 255, .6); transition: background var(--dur-slow), box-shadow var(--dur-slow); }
+body[data-world="mars"] .hud__planet { background: radial-gradient(circle at 35% 30%, #ffe0bd, var(--amber) 55%, #a24a26); box-shadow: 0 0 10px rgba(255, 180, 84, .6); }
+.hud__progress { display: flex; align-items: center; gap: var(--sp-3); margin-left: auto; color: var(--ink-dim); white-space: nowrap; }
+.hud__bar { display: inline-grid; grid-auto-flow: column; gap: 3px; }
+.hud__bar i { width: 10px; height: 4px; background: rgba(138, 155, 184, .25); transition: background var(--dur-base), box-shadow var(--dur-base); }
+.hud__bar i[data-status="opened"] { background: rgba(90, 216, 255, .4); }
+.hud__bar i[data-status="cataloged"] { background: var(--cyan); box-shadow: 0 0 8px rgba(90, 216, 255, .7); }
+@media (max-width: 640px) {
+  .hud { gap: var(--sp-4); padding-inline: var(--sp-4); }
+  .hud__brand > :not(.hud__mark), .hud__progress > span:first-child, .hud__sector-label { display: none; }
+}
+
+body:not([data-screen="landing"]) .site-note { display: none; }
+.site-note { position: fixed; bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; z-index: var(--z-screen); text-align: center; pointer-events: none; font: var(--text-xs)/1.4 var(--font-mono); color: rgba(138, 155, 184, .6); }
