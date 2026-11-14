@@ -33,8 +33,7 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA Science: Surveyor 3', url: 'https://science.nasa.gov/mission/lunar-rangers-and-surveyors/surveyor-3/' },
-      { label: 'NASA: Footpads and Footprints, Humans and Machine Meet on the Moon', url: 'https://solarsystem.nasa.gov/news/1111/footpads-and-footprints-humans-and-machine-meet-on-the-moon' },
-      { label: 'NASA NSSDCA: Apollo 12 at Surveyor 3', url: 'https://nssdc.gsfc.nasa.gov/imgcat/html/object_page/a12_h_48_7133.html' },
+      { label: 'NASA History: 55 Years Ago, Apollo 12 Makes a Pinpoint Landing on the Moon', url: 'https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon' },
     ],
   },
 
@@ -66,7 +65,6 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA: Apollo 11 Mission Overview', url: 'https://www.nasa.gov/missions/apollo/apollo-11/apollo-11-mission-overview/' },
-      { label: 'NASA Science: Apollo 11 Plaque', url: 'https://science.nasa.gov/resource/apollo-11-plaque/' },
     ],
   },
 
@@ -86,7 +84,7 @@ export const DOSSIERS = {
       { kind: 'interpretation', text: 'In 1977 NASA concluded that the seismic, magnetic and heat flow measurements from the ALSEP stations had given scientists their main information about the inside of the Moon.' },
     ],
     matters: 'Some Moon events are rare or slow: big moonquakes, changes in heat, tiny meteorite hits. Instruments left behind can watch for years, catching things a short visit would miss.',
-    surprise: 'Apollo 17’s station was designed to run for about two years and lasted nearly five. And the astronauts themselves loaded its power source, a capsule of plutonium-238 about 4 kilograms in mass, into the generator.',
+    surprise: 'Apollo 17’s station was designed to run for about two years and lasted nearly five. And the astronauts themselves loaded its power source, a fuel capsule of about 4 kilograms containing plutonium-238, into the generator.',
     transmission: {
       narrator: 'Apollo 17 ALSEP',
       text: [
@@ -100,6 +98,8 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA ALSEP Termination Report (NASA RP-1036)', url: 'https://www.nasa.gov/wp-content/uploads/static/history/alsj/19790014808_1979014808.pdf' },
+      { label: 'NASA Technical Reports Server: ALSEP Termination Report (record)', url: 'https://ntrs.nasa.gov/citations/19790014808' },
+      { label: 'NASA PDS: Apollo 12 ALSEP overview (RTG and instrument details)', url: 'https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-a12sws_solar_wind_28s_1hr/document/a12a_alsep.txt' },
       { label: 'NASA PDS: Apollo 17 ALSEP overview', url: 'https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-a15_17_hfe_concatenated/document/hfe/a17a_alsep.txt' },
     ],
   },
@@ -133,7 +133,6 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA: Apollo 15 Mission Details', url: 'https://www.nasa.gov/missions/apollo/apollo-15-mission-details/' },
-      { label: 'NASA NSSDCA: Apollo 15', url: 'https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo15info.html' },
     ],
   },
 
@@ -166,8 +165,8 @@ export const DOSSIERS = {
       ],
     },
     sources: [
-      { label: 'NASA/JPL: Mars Pathfinder Winds Down After Phenomenal Mission', url: 'https://science.nasa.gov/solar-system/mars-pathfinder-winds-down-after-phenomenal-mission/' },
-      { label: 'NASA Science: Mars Pathfinder', url: 'https://science.nasa.gov/mission/mars-pathfinder' },
+      { label: 'NASA/JPL: Mars Pathfinder Winds Down After Phenomenal Mission', url: 'https://science.nasa.gov/solar-system/planets/mars/mars-pathfinder-winds-down-after-phenomenal-mission' },
+      { label: 'NASA Science: Mars Pathfinder', url: 'https://science.nasa.gov/mission/mars-pathfinder/' },
     ],
   },
 
@@ -214,6 +213,7 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA Space Place: The Mars Rovers Spirit and Opportunity', url: 'https://spaceplace.nasa.gov/mars-spirit-opportunity/' },
+      { label: 'NASA Science: Mars Exploration Rover Spirit', url: 'https://science.nasa.gov/mission/mer-spirit/' },
       { label: 'NASA/JPL: Opportunity Rover Finds an Iron Meteorite on Mars', url: 'https://www.jpl.nasa.gov/news/opportunity-rover-finds-an-iron-meteorite-on-mars' },
       { label: 'NASA Science: Images of EDL Debris (includes Opportunity’s heat shield)', url: 'https://science.nasa.gov/blog/images-of-edl-debris' },
     ],

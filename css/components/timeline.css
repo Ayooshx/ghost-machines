@@ -53,3 +53,5 @@
   .tl__item { flex-basis: 13.5rem; }
   .plate { width: 3rem; height: 3rem; }
 }
+
+.tl__node[data-explored="true"] .tl__date::after { content: " ✓"; color: var(--ink-dim); }

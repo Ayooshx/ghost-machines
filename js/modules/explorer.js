@@ -59,6 +59,7 @@ export function initExplorer(router) {
     else if (getArtifact(selected).world !== world) selected = artifactsByWorld(world)[0].id;
     eventId = routeEvent ?? anchorEvent(selected).id;
     render();
+    store.recordMilestone(eventId);   // its details are now on screen
     announcer.textContent = `${getEvent(eventId).title}. ${getArtifact(selected).name} selected`;
   });
   store.addEventListener('change', render);

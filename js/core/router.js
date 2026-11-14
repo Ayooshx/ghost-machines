@@ -1,5 +1,6 @@
 import { getArtifact } from '../data/artifacts.js';
 import { getEvent } from '../data/timeline.js';
+import { getChapter } from '../data/visualNovelData.js';
 import { store } from './store.js';
 import { on } from './dom.js';
 
@@ -8,6 +9,7 @@ export const SCREENS = Object.freeze({
   landing:  { title: 'GHOST MACHINES', world: 'deep' },
   moon:     { title: 'The Moon', world: 'moon' },
   mars:     { title: 'Mars', world: 'mars' },
+  story:    { title: 'The Lost Mission', world: 'deep' },
   quiz:     { title: 'Junior Space Archaeologist quiz', world: null },
   badge:    { title: 'Expedition complete', world: null },
 });
@@ -24,6 +26,8 @@ function parse(hash) {
 /** Turn a requested route into a valid, allowed one. */
 function resolve({ screen, artifactId, eventId }) {
   if (!(screen in SCREENS)) return { screen: 'landing', artifactId: null, eventId: null };
+  // The Lost Mission: #/story shows the chapters, #/story/<chapterId> plays one (the chapter id rides in the artifactId slot).
+  if (screen === 'story') return { screen, artifactId: getChapter(artifactId) ? artifactId : null, eventId: null };
   if (artifactId) {
     const a = getArtifact(artifactId);
     if (!a || (screen !== 'moon' && screen !== 'mars')) artifactId = null;

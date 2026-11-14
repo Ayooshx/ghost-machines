@@ -49,6 +49,10 @@ body.is-launching .landing__orbits { transform: scale(1.6); }
 .starfield { transition: transform 1.4s var(--ease-out); }
 body.is-launching .starfield { transform: scale(1.18); transition-timing-function: cubic-bezier(.55, 0, 1, .45); }
 
+.landing__alt { margin-top: var(--sp-5); font: 400 var(--text-xs)/1.4 var(--font-mono); letter-spacing: .08em; color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; }
+.landing__alt:hover { color: var(--cyan); }
+.landing.is-active .landing__alt { animation: fade-in 1.2s ease 3.1s both; }
+
 @media (max-width: 640px) {
   .landing__class { font-size: .66rem; letter-spacing: .1em; margin-bottom: var(--sp-5); }
   .landing__subtitle { letter-spacing: .2em; }

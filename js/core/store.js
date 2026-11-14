@@ -5,6 +5,8 @@
  * so they cannot drift out of sync.
  */
 import { ARTIFACT_IDS, getArtifact } from '../data/artifacts.js';
+import { EVENTS } from '../data/timeline.js';
+import { CHAPTER_IDS, EVIDENCE_IDS } from '../data/visualNovelData.js';
 
 export const STORAGE_KEY = 'ghostMachines:v1';
 export const BADGE_TITLE = 'Junior Space Archaeologist';
@@ -12,7 +14,8 @@ export const PASS_PERCENT = 70;
 export const STEPS = Object.freeze(['opened', 'read', 'transmission', 'both-sites']);
 export const BASE_STEPS = Object.freeze(['opened', 'read', 'transmission']);
 
-const emptyState = () => ({ v: 1, artifacts: {}, quiz: { best: null, attempts: 0, earnedAt: null }, player: { name: '' } });
+const EVENT_IDS = EVENTS.map((e) => e.id);
+const emptyState = () => ({ v: 1, artifacts: {}, milestones: [], settings: { vnVoice: true }, story: { done: [], evidence: [], at: {} }, quiz: { best: null, attempts: 0, earnedAt: null }, player: { name: '' } });
 const isoOrNull = (s) => (typeof s === 'string' && !Number.isNaN(Date.parse(s)) ? s : null);
 const passes = (correct, total) => total > 0 && correct * 100 >= PASS_PERCENT * total;
 
@@ -25,6 +28,14 @@ function sanitize(raw) {
     if (!e || !Array.isArray(e.steps)) continue;
     const steps = [...new Set(e.steps.filter((x) => STEPS.includes(x)))];
     if (steps.length) s.artifacts[id] = { steps, firstOpenedAt: isoOrNull(e.firstOpenedAt) };
+  }
+  if (Array.isArray(raw.milestones)) s.milestones = [...new Set(raw.milestones.filter((id) => EVENT_IDS.includes(id)))];
+  if (typeof raw.settings?.vnVoice === 'boolean') s.settings.vnVoice = raw.settings.vnVoice;
+  const st = raw.story;
+  if (st && typeof st === 'object') {
+    if (Array.isArray(st.done)) s.story.done = [...new Set(st.done.filter((id) => CHAPTER_IDS.includes(id)))];
+    if (Array.isArray(st.evidence)) s.story.evidence = [...new Set(st.evidence.filter((id) => EVIDENCE_IDS.includes(id)))];
+    for (const [id, n] of Object.entries(st.at ?? {})) if (CHAPTER_IDS.includes(id) && Number.isInteger(n) && n > 0 && n < 100) s.story.at[id] = n;
   }
   const q = raw.quiz, b = q?.best;
   if (Number.isInteger(q?.attempts) && q.attempts >= 0) s.quiz.attempts = q.attempts;
@@ -81,7 +92,55 @@ class Store extends EventTarget {
     return true;
   }
 
+  // ---- Progress counters (all derived from the one stored state) ---------
+  get discoveredCount() { return ARTIFACT_IDS.filter((id) => this.getStatus(id) !== 'undiscovered').length; }  // dossier opened
+  get transmissionCount() { return ARTIFACT_IDS.filter((id) => this.#state.artifacts[id]?.steps.includes('transmission')).length; }
+
+  // ---- Timeline milestones: explored once their details have been shown ----
+  get milestoneTotal() { return EVENT_IDS.length; }
+  get milestoneCount() { return this.#state.milestones.length; }
+  isMilestoneExplored(id) { return this.#state.milestones.includes(id); }
+  recordMilestone(id) {
+    if (!EVENT_IDS.includes(id) || this.#state.milestones.includes(id)) return false;
+    this.#state.milestones.push(id);
+    this.#commit('milestone', { id });
+    return true;
+  }
+
+  // ---- Settings ------------------------------------------------------------
+  get vnVoice() { return this.#state.settings.vnVoice; }
+  setVnVoice(on) { this.#state.settings.vnVoice = !!on; this.#commit('settings', {}); }
+
+  // ---- The Lost Mission (visual novel): chapters, evidence, where you stopped ----
+  get storyDoneCount() { return this.#state.story.done.length; }
+  get evidenceCount() { return this.#state.story.evidence.length; }
+  get evidenceTotal() { return EVIDENCE_IDS.length; }
+  isChapterDone(id) { return this.#state.story.done.includes(id); }
+  /** Chapter 1 is open; each later chapter opens when the one before it is complete. */
+  isChapterUnlocked(id) { const i = CHAPTER_IDS.indexOf(id); return i === 0 || (i > 0 && this.isChapterDone(CHAPTER_IDS[i - 1])); }
+  chapterScene(id) { return this.#state.story.at[id] ?? 0; }
+  /** Remembers the scene reached. Saved quietly (no change event) because it happens on every click. */
+  setChapterScene(id, n) {
+    if (!CHAPTER_IDS.includes(id) || !Number.isInteger(n) || n < 1) return;
+    this.#state.story.at[id] = n; this.#save();
+  }
+  completeChapter(id) {
+    if (!CHAPTER_IDS.includes(id) || !this.isChapterUnlocked(id)) return false;
+    const was = this.isChapterDone(id);
+    delete this.#state.story.at[id];
+    if (!was) this.#state.story.done.push(id);
+    this.#commit('story', { id });
+    if (!was) this.#emit('chapter-complete', { id, count: this.storyDoneCount });
+    return !was;
+  }
+  hasEvidence(id) { return this.#state.story.evidence.includes(id); }
+  collectEvidence(id) {
+    if (!EVIDENCE_IDS.includes(id) || this.hasEvidence(id)) return false;
+    this.#state.story.evidence.push(id); this.#commit('evidence', { id }); return true;
+  }
+
   // ---- Quiz and badge -----------------------------------------------------
+  get quizAttempts() { return this.#state.quiz.attempts; }
   isQuizUnlocked() { return this.catalogedCount === this.total; }
   get bestQuiz() {
     const b = this.#state.quiz.best;
@@ -122,11 +181,11 @@ class Store extends EventTarget {
     try { return sanitize(JSON.parse(localStorage.getItem(STORAGE_KEY))); }
     catch { return emptyState(); }
   }
-  #commit(reason, detail) {
+  #save() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.#state)); this.#persistent = true; }
     catch { this.#persistent = false; } // private mode / quota: keep working in memory
-    this.#emit('change', { reason, ...detail });
   }
+  #commit(reason, detail) { this.#save(); this.#emit('change', { reason, ...detail }); }
   #emit(type, detail = {}) { this.dispatchEvent(new CustomEvent(type, { detail })); }
 }
 

@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="css/components/timeline.css">
 <link rel="stylesheet" href="css/components/dossier.css">
 <link rel="stylesheet" href="css/components/transmission.css">
+<link rel="stylesheet" href="css/components/quiz.css">
+<link rel="stylesheet" href="css/components/visualNovel.css">
 <script type="module" src="js/main.js"></script>
 </head>
 <body data-screen="landing" data-world="deep">
@@ -34,14 +36,15 @@
   <span class="hud__sector"><span class="hud__sector-label">Planet</span><span class="hud__planet" data-planet="moon" aria-hidden="true"></span><span data-sector>Moon</span></span>
   <nav class="hud__nav" aria-label="Expedition">
     <a href="#/landing" data-nav="landing">Home</a>
+    <a href="#/story" data-nav="story">Story</a>
     <a href="#/quiz" data-nav="quiz">Quiz</a>
     <a href="#/badge" data-nav="badge" hidden>Badge</a>
   </nav>
-  <div class="hud__progress">
+  <button class="hud__progress" type="button" data-open-log aria-haspopup="dialog" aria-label="Open expedition log">
     <span>Cataloged</span>
     <span class="hud__bar" data-progress-bar aria-hidden="true"></span>
     <span data-progress-count>0 / 8</span>
-  </div>
+  </button>
 </header>
 
 <main id="main" class="stage" tabindex="-1">
@@ -56,6 +59,7 @@
       <span class="landing__rule" aria-hidden="true"></span>
       <p class="landing__intro">Some machines do not come home. They stay behind on alien worlds—silent, weathered, and still holding the story of how humans learned to explore.</p>
       <a class="btn landing__cta" href="#/moon" data-begin>Begin expedition</a>
+      <a class="landing__alt" href="#/story">Play the visual novel: The Lost Mission</a>
     </div>
   </section>
 
@@ -78,22 +82,28 @@
     <dialog class="dossier glass" data-dossier></dialog>
   </section>
 
+  <section class="screen screen--story" data-screen="story" aria-labelledby="story-title">
+    <h1 id="story-title" class="sr-only" data-screen-title tabindex="-1">The Lost Mission</h1>
+    <div class="vn" data-vn-root></div>
+  </section>
+
   <section class="screen" data-screen="quiz" aria-labelledby="quiz-title">
-    <div class="screen__inner">
-      <h1 id="quiz-title" data-screen-title tabindex="-1">Junior Space Archaeologist quiz</h1>
-      <div class="glass panel"><p>Quiz arrives in Phase 8.</p></div>
+    <div class="screen__inner quiz">
+      <h1 id="quiz-title" data-screen-title tabindex="-1">Junior Space Archaeologist challenge</h1>
+      <div data-quiz-root></div>
     </div>
   </section>
 
   <section class="screen" data-screen="badge" aria-labelledby="badge-title">
-    <div class="screen__inner">
+    <div class="screen__inner quiz">
       <h1 id="badge-title" data-screen-title tabindex="-1">Expedition complete</h1>
-      <div class="glass panel"><p>Badge arrives in Phase 9.</p></div>
+      <div data-badge-root></div>
     </div>
   </section>
 </main>
 
 <footer class="site-note">Unofficial educational project. Not affiliated with or endorsed by NASA.</footer>
+<dialog class="glass dossier log" data-log></dialog>
 <div id="route-announcer" class="sr-only" aria-live="polite"></div>
 </body>
 </html>

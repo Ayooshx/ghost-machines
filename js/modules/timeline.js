@@ -68,7 +68,8 @@ export function createTimeline(root, { onSelect }) {
       for (const [id, node] of nodes) {
         const e = EVENTS[idx(id)];
         node.setAttribute('aria-current', String(id === eventId));
-        node.dataset.status = store.getStatus(e.artifactIds[0]);   // marker fills in as the related artifact is explored
+        node.dataset.status = store.getStatus(e.artifactIds[0]);
+        node.dataset.explored = String(store.isMilestoneExplored(id));   // marker fills in as the related artifact is explored
       }
       fill.style.width = `${(i / (N - 1)) * 100}%`;
       count.textContent = `${i + 1} / ${N}`;
