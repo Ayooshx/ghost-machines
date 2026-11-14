@@ -4,7 +4,9 @@
 **A Digital Space Archaeology Field Guide | NASA Space Apps Challenge**
 
 **Ayush Mondal - Code, Research**
+
 **Ahana Das - Research, Creative Designing**
+
 **Devarshi Joshi - Research, Creative Designing**
 
 Some machines do not come home. They remain on distant worlds, silently preserving the story of humanity's exploration of space.
