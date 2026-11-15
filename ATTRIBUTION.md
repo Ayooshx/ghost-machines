@@ -9,24 +9,24 @@
 
 ## 1. Project files and their provenance
 
-
 | File | What it is |
+|---|---|
 | `ATTRIBUTION.md` | This register |
-| `README.md` | Documentation |
-| `THIRD_PARTY_LICENSES.md` | Licence notes |
-| `css/animations.css` | Keyframes, reduced-motion rules |
-| `css/base.css` | Base styles, font fallbacks |
+| `README.md` | Project documentation |
+| `THIRD_PARTY_LICENSES.md` | Third-party licence notes |
+| `css/animations.css` | Keyframes and reduced-motion rules |
+| `css/base.css` | Base styles and font fallbacks |
 | `css/components/dossier.css` | Dossier layout |
 | `css/components/explorer.css` | Exploration console |
-| `css/components/glass-panel.css` | Panel style |
-| `css/components/landing.css` | Landing page |
-| `css/components/quiz.css` | Quiz, badge panel, expedition log |
-| `css/components/timeline.css` | Timeline |
-| `css/components/transmission.css` | Last Transmission player |
-| `css/components/visualNovel.css` | Visual novel styles |
-| `css/layout.css` | Layout, top bar |
+| `css/components/glass-panel.css` | Panel styling |
+| `css/components/landing.css` | Landing page styling |
+| `css/components/quiz.css` | Quiz, badge panel and expedition log |
+| `css/components/timeline.css` | Timeline styling |
+| `css/components/transmission.css` | Last Transmission player styling |
+| `css/components/visualNovel.css` | Visual novel styling |
+| `css/layout.css` | Layout and top bar |
 | `css/tokens.css` | Design tokens |
-| `index.html` | Page structure. Title, subtitle and intro paragraph text were **supplied by the team (class A, confirm)** |
+| `index.html` | Page structure. Title, subtitle and introductory paragraph text were **supplied by the team (class A, confirm)** |
 | `js/core/dom.js` | DOM helpers |
 | `js/core/router.js` | Hash router |
 | `js/core/store.js` | Single progress store (one localStorage key) |
@@ -38,22 +38,29 @@
 | `js/data/sceneArt.js` | Visual novel scene art and portraits (original SVG, not NASA photographs) |
 | `js/data/timeline.js` | Timeline milestones |
 | `js/data/visualNovelData.js` | THE LOST MISSION script (fictional story over real facts) |
-| `js/main.js` | Entry point |
-| `js/modules/badge.js` | Badge art and PNG certificate |
+| `js/main.js` | Application entry point |
+| `js/modules/badge.js` | Badge artwork and PNG certificate |
 | `js/modules/dossier.js` | Reusable dossier component |
-| `js/modules/explorer.js` | Console coordinator |
+| `js/modules/explorer.js` | Exploration console coordinator |
 | `js/modules/hud.js` | Top bar |
 | `js/modules/landing.js` | Landing transition |
 | `js/modules/log.js` | Expedition log |
 | `js/modules/map.js` | Map and markers |
 | `js/modules/narrator.js` | Speech engine (Web Speech API) |
 | `js/modules/panel.js` | Selected-artifact panel |
-| `js/modules/quiz.js` | Quiz |
-| `js/modules/starfield.js` | Starfield (contains the mulberry32 routine, section 5) |
+| `js/modules/quiz.js` | Quiz functionality |
+| `js/modules/starfield.js` | Starfield (contains the mulberry32 routine, Section 5) |
 | `js/modules/timeline.js` | Timeline component |
-| `js/modules/transmission.js` | Last Transmission player (contains the play-icon path, section 5) |
+| `js/modules/transmission.js` | Last Transmission player (contains the play-icon path, Section 5) |
 | `js/modules/visualNovel.js` | Visual novel engine |
-| `tests/audit.mjs`, `tests/boot-test.mjs`, `tests/dom-shim.mjs`, `tests/quiz-flow.mjs`, `tests/story-flow.mjs`, `tests/story-voice.mjs` | Dev-only Node tests (not shipped to visitors). They load the real `index.html` and `main.js` into a small DOM stand-in. No packages. They cannot judge appearance. |
+| `tests/audit.mjs` | Development-only audit tests |
+| `tests/boot-test.mjs` | Development-only boot tests |
+| `tests/dom-shim.mjs` | DOM stand-in used by tests |
+| `tests/quiz-flow.mjs` | Development-only quiz flow tests |
+| `tests/story-flow.mjs` | Development-only story flow tests |
+| `tests/story-voice.mjs` | Development-only story voice tests |
+
+**Testing note:** The test files are development-only and are not shipped to visitors. They load the actual `index.html` and `main.js` into a lightweight DOM stand-in. They require no external packages and do not evaluate visual appearance.
 
 
 ## 2. Fonts
