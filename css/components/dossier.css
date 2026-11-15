@@ -35,8 +35,8 @@
 .dossier__end { height: 2px; }
 
 @media (max-width: 640px) {
-  .dossier { width: 100vw; max-height: 100vh; }
-  .dossier__body { padding: var(--sp-5) var(--sp-4) var(--sp-7); max-height: 100vh; }
+  .dossier { width: 100vw; max-height: 100vh; max-height: 100dvh; }
+  .dossier__body { padding: var(--sp-5) var(--sp-4) var(--sp-7); max-height: 100vh; max-height: 100dvh; }
   .dossier__head { padding-right: 4.5rem; }
   .learned li { grid-template-columns: 1fr; }
   .badge { justify-self: start; }

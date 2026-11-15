@@ -60,6 +60,16 @@ body[data-world="mars"] .hud__planet { background: radial-gradient(circle at 35%
 }
 
 body:not([data-screen="landing"]) .site-note { display: none; }
-.site-note { position: fixed; bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; z-index: var(--z-screen); text-align: center; pointer-events: none; font: var(--text-xs)/1.4 var(--font-mono); color: rgba(138, 155, 184, .6); }
+.site-note { position: fixed; bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; z-index: var(--z-screen); text-align: center; pointer-events: none; font: var(--text-xs)/1.4 var(--font-mono); color: var(--ink-dim); }
 
 .hud__progress:hover { color: var(--ink); }
+
+/* ---- Final review: small screens, touch targets, idle animation ---- */
+@media (max-width: 480px) { .hud__bar { display: none; } .hud__nav { gap: var(--sp-4); } }   /* keep Home / Story / Quiz reachable on narrow phones */
+@media (pointer: coarse) {
+  .hud__nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  .tab, .tl__nav, .chip-btn, .site-toggle, .tx__stop, .tx__markread, .vn__voice, .vn__evbtn, .vn__back, .vn__replay, .vn__read, .log__reset { min-height: 44px; }
+}
+/* Animations that nobody can see do not run: inactive screens, and a hidden browser tab */
+.screen:not(.is-active) *, .screen:not(.is-active) *::before, .screen:not(.is-active) *::after,
+html.is-paused *, html.is-paused *::before, html.is-paused *::after { animation-play-state: paused !important; }

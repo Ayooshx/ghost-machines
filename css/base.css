@@ -1,12 +1,14 @@
-/* Self-hosted fonts: see README for the woff2 files to add to assets/fonts/ */
-@font-face { font-family: "Cormorant Garamond"; font-weight: 400; font-style: normal; font-display: swap; src: url("../assets/fonts/cormorant-garamond-400.woff2") format("woff2"); }
-@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-style: normal; font-display: swap; src: url("../assets/fonts/cormorant-garamond-600.woff2") format("woff2"); }
-@font-face { font-family: "Cormorant Garamond"; font-weight: 400; font-style: italic; font-display: swap; src: url("../assets/fonts/cormorant-garamond-400-italic.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-400.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Sans"; font-weight: 500; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-500.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-600.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ibm-plex-mono-400.woff2") format("woff2"); }
-@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("../assets/fonts/ibm-plex-mono-500.woff2") format("woff2"); }
+/* Fonts. The site uses IBM Plex and Cormorant Garamond if they are installed on the visitor's device, and clean system
+   fallbacks otherwise. No font files are bundled, so nothing is requested and nothing can 404. To bundle fonts, follow
+   README.md ("Fonts") and replace each local() with a url("../assets/fonts/<file>.woff2") source. */
+@font-face { font-family: "Cormorant Garamond"; font-weight: 400; font-style: normal; src: local("Cormorant Garamond Regular"), local("CormorantGaramond-Regular"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-style: normal; src: local("Cormorant Garamond SemiBold"), local("CormorantGaramond-SemiBold"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 400; font-style: italic; src: local("Cormorant Garamond Italic"), local("CormorantGaramond-Italic"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; src: local("IBM Plex Sans"), local("IBMPlexSans-Regular"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 500; src: local("IBM Plex Sans Medium"), local("IBMPlexSans-Medium"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; src: local("IBM Plex Sans SemiBold"), local("IBMPlexSans-SemiBold"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; src: local("IBM Plex Mono"), local("IBMPlexMono-Regular"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; src: local("IBM Plex Mono Medium"), local("IBMPlexMono-Medium"); }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }

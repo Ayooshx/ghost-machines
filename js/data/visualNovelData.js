@@ -307,9 +307,9 @@ export const CHAPTERS = [
       ] },
       { type: 'history', title: 'Real history: Perseverance’s landing', text: [
         'Perseverance launched on July 30, 2020, and landed on February 18, 2021. A heat shield, a parachute, a backshell and a sky crane delivered it to the surface.',
-        'The backshell hit the ground at about 126 km/h (78 mph) roughly a kilometer from the landing site. The pieces were not all in one place.',
+        'The parachute and backshell came down roughly a kilometer northwest of the landing site. JPL images show the heat shield, the parachute and backshell, the descent stage and the rover in separate places.',
         'Engineers call this the best-documented Mars landing in history. Seeing what is left behind shows how the hardware performed, which helps design future landers.'],
-        sources: [S('NASA Science: Images of EDL Debris', 'https://science.nasa.gov/blog/images-of-edl-debris'), S('NASA Science: Mars 2020 Perseverance', 'https://science.nasa.gov/mission/mars-2020-perseverance/')] },
+        sources: [S('NASA Science: Images of EDL Debris', 'https://science.nasa.gov/blog/images-of-edl-debris'), S('NASA/JPL: Spacecraft components on the surface', 'https://www.jpl.nasa.gov/images/perseverance-and-mars-2020-spacecraft-components-on-the-surface'), S('NASA Science: Mars 2020 Perseverance', 'https://science.nasa.gov/mission/mars-2020-perseverance/')] },
     ] },
 ];
 

@@ -29,7 +29,7 @@ export const EVENTS = [
   { id: 'apollo-17-1972', date: '1972-12-11', dateLabel: 'Dec 11, 1972', world: 'moon', plate: 'alsep', artifactIds: ['alsep', 'lunar-roving-vehicle'],
     title: 'Apollo 17 makes the final Apollo Moon landing',
     text: 'Apollo 17 landed in the Taurus-Littrow valley, set up the last ALSEP station and drove the third Lunar Roving Vehicle. Both machines are part of this archive.',
-    source: { label: 'NASA PDS: Apollo 17 ALSEP overview', url: 'https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-a15_17_hfe_concatenated/document/hfe/a17a_alsep.txt' } },
+    source: { label: 'NASA NSSDCA: Apollo 17', url: 'https://nssdc.gsfc.nasa.gov/planetary//lunar/apollo17info.html' } },
   { id: 'pathfinder-1997', date: '1997-07-04', dateLabel: 'Jul 4, 1997', world: 'mars', plate: 'pathfinder', artifactIds: ['pathfinder-sojourner'], anchor: true,
     title: 'Pathfinder bounces onto Mars and Sojourner drives off',
     text: 'Mars Pathfinder landed in Ares Vallis, cushioned by airbags. Its small rover, Sojourner, became the first rover to operate on Mars. The last signal from the lander arrived on September 27, 1997.',

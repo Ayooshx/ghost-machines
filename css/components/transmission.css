@@ -29,7 +29,7 @@
 /* Transcript: the paragraph being spoken is highlighted */
 .tx__transcript { margin-top: var(--sp-4); }
 .tx__transcript p { margin: 0 0 var(--sp-3); padding: .35rem 0 .35rem var(--sp-3); border-left: 2px solid transparent; font: italic 400 clamp(1.05rem, 3vw, 1.25rem)/1.65 var(--font-display); color: var(--ink); transition: opacity var(--dur-base), border-color var(--dur-base), background var(--dur-base); }
-.tx.is-live .tx__transcript p { opacity: .4; }
+.tx.is-live .tx__transcript p { opacity: .6; }
 .tx.is-live .tx__transcript p.is-done { opacity: .7; }
 .tx.is-live .tx__transcript p.is-current { opacity: 1; border-left-color: var(--amber); background: linear-gradient(90deg, rgba(255, 180, 84, .14), transparent); }
 .tx__markread { padding: 0; font: var(--text-xs)/1.5 var(--font-mono); color: var(--ink-dim); background: none; border: 0; text-decoration: underline; cursor: pointer; }

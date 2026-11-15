@@ -100,6 +100,7 @@ export const DOSSIERS = {
       { label: 'NASA ALSEP Termination Report (NASA RP-1036)', url: 'https://www.nasa.gov/wp-content/uploads/static/history/alsj/19790014808_1979014808.pdf' },
       { label: 'NASA Technical Reports Server: ALSEP Termination Report (record)', url: 'https://ntrs.nasa.gov/citations/19790014808' },
       { label: 'NASA PDS: Apollo 12 ALSEP overview (RTG and instrument details)', url: 'https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-a12sws_solar_wind_28s_1hr/document/a12a_alsep.txt' },
+      { label: 'NASA NSSDCA: Apollo 17 (launch and landing dates)', url: 'https://nssdc.gsfc.nasa.gov/planetary//lunar/apollo17info.html' },
       { label: 'NASA PDS: Apollo 17 ALSEP overview', url: 'https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-a15_17_hfe_concatenated/document/hfe/a17a_alsep.txt' },
     ],
   },
@@ -157,7 +158,7 @@ export const DOSSIERS = {
       text: [
         'I arrived wrapped in balloons.',
         'That’s the truth. A parachute, a few rockets, and a cocoon of airbags. I hit Mars, bounced, and rolled to a stop.',
-        'When the airbags pulled back, a small rover rolled down my ramp. Her name was Sojourner. She was about the size of a microwave oven, and she was the first rover to drive on Mars. She tasted rocks with an X-ray while I photographed everything.',
+        'When the airbags pulled back, a small rover rolled down my ramp. Her name was Sojourner. She was small, and she was the first rover to drive on Mars. She tasted rocks with an X-ray while I photographed everything.',
         'They gave me one month. I gave them nearly three.',
         'My battery was probably the first thing to fail. One day I simply stopped answering.',
         'I wasn’t the biggest, or the cleverest. I was the proof that it could be done.',
@@ -171,7 +172,7 @@ export const DOSSIERS = {
   },
 
   'spirit-opportunity': {
-    launch: 'Spirit: June 10, 2003 · Opportunity: July 7, 2003',
+    launch: 'Spirit: June 10, 2003 · Opportunity: July 2003',
     landing: 'Spirit: January 4, 2004 · Opportunity: January 25, 2004 (UTC)',
     place: 'Mars · two sites on opposite sides of the planet',
     objective: 'Find out whether parts of Mars were ever wet in a way that could have supported life. Each rover was sent to a place with clues from orbit: a dry river channel at Gusev Crater, and a large deposit of the mineral gray hematite at Meridiani Planum.',
@@ -188,7 +189,7 @@ export const DOSSIERS = {
       },
       {
         id: 'opportunity', label: 'Opportunity · Meridiani Planum', place: 'Mars · Meridiani Planum',
-        launch: 'July 7, 2003', landing: 'January 25, 2004 (UTC); January 24 in U.S. Pacific time',
+        launch: 'July 2003', landing: 'January 25, 2004 (UTC); January 24 in U.S. Pacific time',
         today: 'Last contact June 10, 2018, during a planet-wide dust storm; mission declared complete February 13, 2019',
         note: 'Opportunity explored a series of craters from Eagle Crater to Endeavour Crater. Along the way it examined its own discarded heat shield, which lay near a surprise: a meteorite.',
       },
@@ -259,8 +260,8 @@ export const DOSSIERS = {
     datesNote: 'The parachute and backshell were photographed from the air by the Ingenuity helicopter on April 19, 2022.',
     objective: 'The Perseverance rover was sent to Jezero Crater to search for signs of ancient life and collect rock samples. First it had to land safely, and that was the job of the entry, descent and landing hardware.',
     did: [
-      'The spacecraft hit Mars’s atmosphere at about 20,000 km/h (12,500 mph). A heat shield took the heat, a supersonic parachute slowed it, and a backshell protected the rover. Then a rocket-powered “sky crane” lowered the rover on cables. The discarded hardware landed a safe distance away.',
-      'The backshell hit the ground at about 126 km/h (78 mph), roughly 1 kilometer northwest of the landing site, still attached to the parachute. The sky crane’s descent stage crashed away from the rover, and a rear camera caught the smoke plume.',
+      'The spacecraft plunged into Mars’s atmosphere at high speed. A heat shield took the heat, a supersonic parachute slowed it, and a backshell protected the rover. Then a rocket-powered “sky crane” lowered the rover on cables. The discarded hardware landed a safe distance away.',
+      'The parachute and backshell came down roughly 1 kilometer northwest of the landing site, still joined by the parachute’s suspension lines. The heat shield and the sky crane’s descent stage landed in other places, and a rear camera on the rover caught the smoke plume from the descent stage’s crash.',
     ],
     learned: [
       { kind: 'confirmed', text: 'On April 19, 2022, Ingenuity’s 26th flight took 10 color images of the parachute and backshell, the first views of them from the air.' },
@@ -268,7 +269,7 @@ export const DOSSIERS = {
       { kind: 'interpretation', text: 'Engineers studied the images to see how the hardware performed. Early looks suggested the backshell’s protective coating stayed intact during entry.' },
     ],
     matters: 'Mission engineers have called this the best-documented Mars landing in history. Seeing what is left behind shows how the hardware really performed, which helps design future landers.',
-    surprise: 'The parachute’s orange-and-white stripes hide a message in binary code. It spells “Dare mighty things,” the motto of NASA’s Jet Propulsion Laboratory, along with the lab’s GPS coordinates. NASA confirmed it at a news briefing, and internet sleuths cracked it within hours.',
+    surprise: 'The parachute’s orange-and-white stripes hide a message in binary code. It spells “Dare mighty things,” the motto of NASA’s Jet Propulsion Laboratory, along with the lab’s GPS coordinates. Engineers revealed at a NASA news briefing that a message was hidden there, and internet sleuths cracked it within hours.',
     transmission: {
       narrator: 'Perseverance’s parachute',
       text: [
@@ -282,6 +283,7 @@ export const DOSSIERS = {
     },
     sources: [
       { label: 'NASA Science: Images of EDL Debris', url: 'https://science.nasa.gov/blog/images-of-edl-debris' },
+      { label: 'NASA/JPL: Perseverance and Mars 2020 Spacecraft Components on the Surface', url: 'https://www.jpl.nasa.gov/images/perseverance-and-mars-2020-spacecraft-components-on-the-surface' },
       { label: 'NASA Science: Mars 2020 Perseverance', url: 'https://science.nasa.gov/mission/mars-2020-perseverance/' },
     ],
   },

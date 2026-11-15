@@ -15,6 +15,7 @@ export function initLog(router) {
       : store.isQuizUnlocked() ? 'Unlocked. Not attempted yet.' : `Locked. Catalog ${total - store.catalogedCount} more ${total - store.catalogedCount === 1 ? 'machine' : 'machines'} to unlock it.`;
     const reset = el('button', { class: 'log__reset', type: 'button', text: 'Reset my progress' });
     on(reset, 'click', () => { if (confirm('Reset all expedition progress on this device? This cannot be undone.')) { store.reset(); render(); } });
+    dialog.setAttribute('aria-labelledby', 'log-title');   // only once the title exists
     dialog.replaceChildren(el('div', { class: 'log__body' },
       el('form', { method: 'dialog', class: 'dossier__close' }, el('button', { class: 'btn btn--amber', type: 'submit', 'aria-label': 'Close expedition log' }, 'Close')),
       el('p', { class: 'panel__eyebrow', text: 'Field notes' }),
@@ -36,7 +37,6 @@ export function initLog(router) {
   }
 
   function open() { render(); dialog.showModal(); }
-  dialog.setAttribute('aria-labelledby', 'log-title');
   on(dialog, 'click', (e) => { if (e.target === dialog) dialog.close(); });
   router.addEventListener('route', () => { if (dialog.open) dialog.close(); });   // following a link inside the log closes it
   on(qs('[data-open-log]'), 'click', open);

@@ -19,7 +19,13 @@ export class N {
   getAttribute(k) { return this.attrs[k] ?? null; } removeAttribute(k) { delete this.attrs[k]; } hasAttribute(k) { return k in this.attrs; }
   toggleAttribute(k, f) { (f ?? !(k in this.attrs)) ? this.attrs[k] = '' : delete this.attrs[k]; }
   addEventListener(t, f) { (this.L[t] ??= []).push(f); } removeEventListener(t, f) { this.L[t] = (this.L[t] ?? []).filter((x) => x !== f); }
-  dispatchEvent(e) { e.target ??= this; (this.L[e.type] ?? []).slice().forEach((f) => f(e)); return true; }
+  // click and keydown bubble to ancestors, like a real browser (the app relies on delegated handlers)
+  dispatchEvent(e) {
+    e.target ??= this;
+    const bubbles = e.type === 'click' || e.type === 'keydown';
+    for (let n = this; n; n = bubbles ? n.parentElement : null) { e.currentTarget = n; (n.L[e.type] ?? []).slice().forEach((f) => f(e)); if (e.cancelBubble) break; }
+    return true;
+  }
   focus() { N.focused = this; } scrollTo() {} scrollIntoView() {} showModal() { this.open = true; } close() { this.open = false; this.dispatchEvent({ type: 'close' }); }
   getBoundingClientRect() { return { width: 300, height: 56 }; } getContext() { return new Proxy({}, { get: () => () => ({ addColorStop() {} }) }); }
   closest(sel) { let n = this; while (n) { if (n.match?.(sel)) return n; n = n.parentElement; } return null; }

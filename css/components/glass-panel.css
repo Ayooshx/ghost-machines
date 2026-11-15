@@ -12,3 +12,5 @@
 .glass::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
 .panel { padding: var(--sp-5) var(--sp-6); max-width: 40rem; }
 .panel > :last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) { @supports (backdrop-filter: blur(1px)) { .glass { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); } } }   /* lighter blur on phones */

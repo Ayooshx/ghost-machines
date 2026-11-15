@@ -19,6 +19,7 @@ export function initExplorer(router) {
   const dialog = qs('[data-dossier]', root);
   const announcer = qs('#route-announcer');
 
+  let active = false;   // true only while the Moon/Mars console is on screen
   let world = 'moon';
   let selected = artifactsByWorld('moon')[0].id;
   let eventId = anchorEvent(selected).id;
@@ -53,7 +54,8 @@ export function initExplorer(router) {
   router.addEventListener('route', (e) => {
     if (dialog.open) dialog.close();   // leaving or switching: close the dossier, which stops any narration
     const { screen, artifactId, eventId: routeEvent } = e.detail;
-    if (screen !== 'moon' && screen !== 'mars') return;
+    active = screen === 'moon' || screen === 'mars';
+    if (!active) return;
     world = screen;
     if (artifactId) selected = artifactId;
     else if (getArtifact(selected).world !== world) selected = artifactsByWorld(world)[0].id;
@@ -62,7 +64,7 @@ export function initExplorer(router) {
     store.recordMilestone(eventId);   // its details are now on screen
     announcer.textContent = `${getEvent(eventId).title}. ${getArtifact(selected).name} selected`;
   });
-  store.addEventListener('change', render);
+  store.addEventListener('change', () => { if (active) render(); });   // story or quiz progress should not rebuild a hidden console
 
   for (const t of tabs) on(t, 'click', () => router.go(t.dataset.world));
   on(qs('[data-tabs]', root), 'keydown', (e) => {

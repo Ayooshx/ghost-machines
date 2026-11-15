@@ -30,7 +30,7 @@ export function initStarfield(root) {
     return { node, depth: cfg.depth };
   });
 
-  on(document, 'visibilitychange', () => root.classList.toggle('is-paused', document.hidden));
+  on(document, 'visibilitychange', () => { root.classList.toggle('is-paused', document.hidden); document.documentElement?.classList.toggle('is-paused', document.hidden); });
 
   // Gentle pointer parallax (fine pointers only, never with reduced motion)
   if (prefersReducedMotion() || !matchMedia('(pointer: fine)').matches) return;

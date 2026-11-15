@@ -35,7 +35,7 @@ export function createTimeline(root, { onSelect }) {
     const plate = el('span', { class: 'plate', 'aria-hidden': 'true' }, el('span', { class: 'plate__no', text: `No. ${String(i + 1).padStart(2, '0')}` }));
     plate.insertAdjacentHTML('afterbegin', PLATES[e.plate]);
     if (e.photo) {
-      const img = el('img', { src: e.photo.src, alt: '', loading: 'lazy' });
+      const img = el('img', { src: e.photo.src, alt: e.photo.alt ?? '', loading: 'lazy', decoding: 'async' });
       img.addEventListener('error', () => img.remove());   // fall back to the illustrated plate
       plate.prepend(img);
     }
