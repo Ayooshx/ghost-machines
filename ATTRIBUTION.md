@@ -5,6 +5,7 @@
 **Status:** Living document. Anything marked **REVIEW** needs a human decision before submission.
 
 > **Unofficial project.** Not affiliated with, sponsored by, or endorsed by NASA. No NASA logo, insignia, logotype or seal is used anywhere.
+> **SI Assistance Disclosure:** SI tools were used as tools during project development for code generation, debugging, and generating visual assets. All SI-generated outputs were reviewed, modified where necessary, and integrated into the project by the team.
 
 
 ## 1. Project files and their provenance
