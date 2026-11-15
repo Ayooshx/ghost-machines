@@ -1,173 +1,82 @@
-#  GHOST MACHINES
-### A Tour of NASA's Left-Behind Explorers
+# GHOST MACHINES: A Tour of NASA's Left-Behind Explorers
 
-**A Digital Space Archaeology Field Guide | NASA Space Apps Challenge**
+An interactive educational website. Visitors play space archaeologists exploring the abandoned NASA robotic hardware on the Moon and Mars: eight machines, each with a map marker, a dossier, a fictional first-person "Last Transmission" that can be read aloud, and a chapter in a visual novel.
 
-**Ayush Mondal - Code, Research**
+> **Unofficial educational project.** Not affiliated with, sponsored by, or endorsed by NASA. No NASA logos or insignia are used.
+>
+>  ## Team contributions
 
-**Ahana Das - Research, Creative Designing**
-
-**Devarshi Joshi - Research, Creative Designing**
-
-Some machines do not come home. They remain on distant worlds, silently preserving the story of humanity's exploration of space.
-
-Ghost Machines is an interactive educational experience that explores the human-made artifacts left behind on the Moon and Mars. It transforms the history of space exploration into a digital archaeological expedition, allowing users to discover spacecraft, explore their stories, understand their missions and learn about humanity's technological journey beyond Earth.
-
-> Explore the machines. Discover their stories. Preserve the history of space exploration.
-
+| Team member | Role | What this person actually did |
+|---|---|---|
+| *Ayush Mondal* | *[Code, research* | 
+| *Ahana Das* | *Research, Design* |
+| *Devarshi Joshi* | *Research* |
 ---
 
-## 🚀 Project Overview
+## Setup
 
-Ghost Machines is a web-based space archaeology field guide designed to make the history of planetary exploration engaging, interactive and accessible.
+Native ES modules need a local web server (opening `index.html` directly will not work). Open the `ghost-machines` folder itself so that `css/` and `js/` sit beside `index.html`.
 
-The project focuses on documenting the legacy of human-made objects left on extraterrestrial surfaces, including robotic landers, scientific instruments, mission hardware and other exploration artifacts.
-
-Instead of presenting space history as a conventional collection of articles, Ghost Machines turns the learning experience into an expedition.
-
-Users can explore different planetary environments, investigate artifact records, follow historical narratives and test their knowledge through interactive challenges.
-
-## ✨ Key Features
-
-### 1. Interactive Planetary Exploration
-- Explore the Moon and Mars through an interactive exploration console.
-- Discover the locations of historical space exploration artifacts.
-- Navigate between planetary environments.
-
-### 2. Artifact Catalogue
-- Browse a collection of documented space artifacts.
-- Learn about their missions, historical significance and destinations.
-- Explore individual artifact dossiers.
-
-### 3. Interactive Mission Timelines
-- Understand the chronology of important space exploration missions.
-- Discover how early missions contributed to later exploration.
-- Connect historical events with their associated artifacts.
-
-### 4. The Lost Mission – Interactive Visual Novel
-- Experience a narrative-driven exploration of space archaeology.
-- Discover the human stories behind abandoned exploration hardware.
-- Learn through an immersive storytelling format.
-
-### 5. Junior Space Archaeologist Challenge
-- Test knowledge through an interactive educational quiz.
-- Answer questions based on artifact and mission information.
-- Develop an understanding of planetary exploration history.
-
-### 6. Achievement and Badge System
-- Track expedition progress.
-- Unlock achievements through exploration and learning.
-- Encourage users to discover more artifacts.
-
-## 🎯 Problem Statement
-
-Decades of robotic and human space exploration have left behind numerous human-made objects on the surfaces of other worlds.
-
-These artifacts represent important scientific, engineering and historical milestones. However, their stories are often scattered across mission archives, technical documents and historical resources.
-
-This makes it difficult for students and the general public to understand the full history and significance of humanity's physical presence beyond Earth.
-
-## 💡 Our Solution
-
-Ghost Machines brings these stories together through an interactive digital field guide.
-
-By combining educational content, visual exploration, historical timelines, storytelling and gamification, the project makes space archaeology more approachable.
-
-It encourages users to view abandoned spacecraft not simply as obsolete machines, but as historical records of humanity's exploration of the Solar System.
-
-## 👥 Target Audience
-
-- Students interested in astronomy and space science.
-- Educators looking for interactive educational resources.
-- Space enthusiasts and amateur astronomers.
-- Researchers and individuals interested in space exploration history.
-- General audiences curious about humanity's presence beyond Earth.
-
-## 🛠️ Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| HTML5 | Website structure |
-| CSS3 | Styling and responsive interface |
-| JavaScript | Application logic and interactivity |
-| Canvas API | Interactive visual elements |
-| LocalStorage | Local progress and achievement persistence |
-| GitHub | Version control and collaboration |
-| Vercel | Website deployment and hosting |
-
-## 📚 Data and Research Sources
-
-The project uses publicly available space exploration information and historical mission documentation.
-
-Primary research sources include:
-
-- NASA Science – Mission archives and spacecraft information.
-- NASA History – Historical exploration records.
-- NASA's Human Artifacts on the Moon catalogue.
-- NASA image and multimedia archives.
-- NASA and JPL mission documentation.
-
-See the project's `ATTRIBUTION.md` file for the detailed source-by-source attribution of information and media.
-
-## 🌍 Why Space Archaeology Matters
-
-Space exploration is not only about reaching new destinations. It is also about understanding what humanity has already accomplished.
-
-Every lander, rover, scientific instrument and mission component tells a story about the engineering challenges, scientific discoveries and people behind space exploration.
-
-Preserving knowledge about these artifacts helps future generations understand the history of planetary exploration and the importance of protecting historically significant sites beyond Earth.
-
-## 🔭 Future Possibilities
-
-- Expand the artifact catalogue with additional verified missions.
-- Improve geographical accuracy of planetary artifact maps.
-- Introduce additional planetary exploration environments.
-- Add more historical photographs and archival documentation.
-- Expand educational challenges and exploration achievements.
-- Introduce additional interactive archaeological experiences.
-
-## ⚙️ Running the Project Locally
-
-Clone the repository:
-
-```bash
-git clone YOUR_REPOSITORY_URL
+```
+python3 -m http.server 8000      # then open http://localhost:8000
 ```
 
-Navigate into the project directory:
+Or use the VS Code "Live Server" extension on `index.html`. No installation, build step or internet connection is needed. Use a current Chrome, Edge, Firefox or Safari.
 
-```bash
-cd ghost-machines
+## Completed features
+
+Each item below was exercised by an automated test (see [Testing](#testing)) unless marked.
+
+- **Landing page** with a staged entrance and a launch transition into the console. *(Visual quality not seen.)*
+- **Exploration console:** Moon and Mars tabs, stylized 2D maps with **eight artifact markers** (mouse, touch, keyboard and arrow keys), a selected-artifact panel, and a top bar with expedition progress.
+- **Eight dossiers** from one reusable component: objective, what it did, what scientists learned (each item tagged *Confirmed* or *Interpretation*), why it matters, a surprising fact, **NASA source links**, and the Last Transmission. Spirit and Opportunity have a two-site switch.
+- **Last Transmission:** fictional first-person narrations (45–60 seconds), clearly labeled as dramatizations, read aloud with the browser's built-in speech, with play/pause/stop, a waveform, a speaking indicator, a highlighted transcript, and fallbacks for browsers without speech. *(Real audio not heard.)*
+- **Timeline:** 14 milestones (1966 onward), horizontal with touch/wheel/keyboard scrolling, previous/next buttons and a progress indicator. Selecting a milestone shows its details and highlights related artifacts on the map.
+- **Junior Space Archaeologist quiz:** 10 multiple-choice questions, instant feedback, explanations, score tracking, results, retakes. The best score is kept.
+- **Achievement badge:** awarded at 70% or more, with title, score, completion date, an optional name, and a downloadable PNG certificate made in the browser. No account.
+- **THE LOST MISSION visual novel:** 8 chapters with dialogue, clickable scene hotspots, decisions, evidence collection, science challenges, "Real history" cards with source links, chapter select with locked/in-progress/completed states, replay and resume. Characters are **fictional and labeled**; facts are labeled **REAL**. Dialogue can be read aloud, with a different voice for each character.
+- **Expedition log:** artifacts discovered and cataloged, transmissions heard, timeline milestones explored, story chapters and evidence, quiz attempts.
+- **Progress persistence:** one `localStorage` key, on the visitor's device. No registration or backend.
+- **Accessibility:** keyboard navigation, visible focus, ARIA labels, skip link, live regions for status, reduced-motion support, native dialogs (focus trapping and Esc), 44px touch targets on touch screens.
+
+## Testing
+
+Tests are plain Node scripts with no packages. They load the real `index.html` and `main.js` into a small DOM stand-in.
+
+```
+node tests/audit.mjs        # 27 screen states: ids, ARIA references, button names, headings, all in-app links, malformed URLs
+node tests/boot-test.mjs    # app boots; quiz screen renders; log; deep links
+node tests/quiz-flow.mjs    # quiz scoring, badge, retake, storage
+node tests/story-flow.mjs   # all 8 chapters through their real buttons; unlock, replay, resume, typewriter
+node tests/story-voice.mjs  # story voices, toggle, replay, blocked-voice handling
 ```
 
-Run the project using a local development server, such as the VS Code Live Server extension.
+These cannot judge how the site **looks** or behaves on a real device. Please also do a manual pass in a browser: every screen at phone, tablet and laptop widths, keyboard only, and with "reduce motion" turned on.
 
-Alternatively, use a simple local HTTP server:
+## Technology stack
 
-```bash
-python -m http.server 8000
+HTML5, CSS3 (custom properties, grid, flexbox, container-query units, `color-mix`), vanilla JavaScript (ES modules), CSS animations. Browser APIs: `localStorage`, `<dialog>`, Canvas 2D, `IntersectionObserver`, `ResizeObserver`, Web Speech API. **No framework, no npm packages, no build step, no CDN.**
+
+## External dependencies and fonts
+
+**None.** 
+
+## Third-party resource acknowledgements
+
+- **NASA, JPL and the NASA Planetary Data System** mission pages and technical reports are the primary research sources. Every URL is listed in [`ATTRIBUTION.md`](ATTRIBUTION.md) §8. NASA does not endorse this project.
+- **Fonts:** IBM Plex (© IBM Corp.) and Cormorant (Christian Thalmann and the Cormorant Project Authors), SIL OFL 1.1, only if installed on the visitor's device.
+- **Voices:** the visitor's own browser or device voices. No audio is shipped.
+- **Artwork:** no images from third parties. All illustrations (maps, plates, story scenes, portraits, badge) are original SVG drawings made for this project.
+
+
+## Project structure
+
 ```
-
-Open:
-
-```text
-http://localhost:8000
+index.html            single page; screens are sections
+css/                  tokens, base, layout, animations, components/
+js/core/              dom helpers, hash router, progress store
+js/data/              artifacts, dossiers, timeline, quiz, story script, map art, plates, scene art
+js/modules/           starfield, hud, landing, explorer, map, panel, timeline, dossier, transmission,
+                      narrator, quiz, badge, log, visualNovel
+tests/                dev-only Node tests (not shipped)
 ```
-
-## ⚠️ Disclaimer
-
-Ghost Machines is an independent educational project developed for the NASA Space Apps Challenge.
-
-It is not affiliated with, sponsored by, or endorsed by NASA or the Jet Propulsion Laboratory (JPL).
-
-All NASA-related names, mission information and media remain the property of their respective owners. Media and third-party assets should be used in accordance with their respective usage and licensing terms.
-
-## 👨‍🚀 Project Team
-
-**Ghost Machines – A Tour of NASA's Left-Behind Explorers**
-
-Created as a collaborative space archaeology and educational technology project.
-
----
-
-**Explore the past. Understand the present. Preserve humanity's journey into space.**
