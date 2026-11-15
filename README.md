@@ -3,11 +3,11 @@
 An interactive educational website. Visitors play space archaeologists exploring the abandoned NASA robotic hardware on the Moon and Mars: eight machines, each with a map marker, a dossier, a fictional first-person "Last Transmission" that can be read aloud, and a chapter in a visual novel.
 
 > **Unofficial educational project.** Not affiliated with, sponsored by, or endorsed by NASA. No NASA logos or insignia are used.
->
->  ## Team contributions
 
-| Team member | Role | What this person actually did |
-|---|---|---|
+  ## Team contributions
+
+| Team member | Role |
+|---|---|
 | *Ayush Mondal* | *[Code, research* | 
 | *Ahana Das* | *Research, Design* |
 | *Devarshi Joshi* | *Research* |
@@ -56,10 +56,6 @@ These cannot judge how the site **looks** or behaves on a real device. Please al
 ## Technology stack
 
 HTML5, CSS3 (custom properties, grid, flexbox, container-query units, `color-mix`), vanilla JavaScript (ES modules), CSS animations. Browser APIs: `localStorage`, `<dialog>`, Canvas 2D, `IntersectionObserver`, `ResizeObserver`, Web Speech API. **No framework, no npm packages, no build step, no CDN.**
-
-## External dependencies and fonts
-
-**None.** 
 
 ## Third-party resource acknowledgements
 
