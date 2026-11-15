@@ -8,7 +8,7 @@ An interactive educational website. Visitors play space archaeologists exploring
 
 | Team member | Role |
 |---|---|
-| *Ayush Mondal* | *[Code, research* | 
+| *Ayush Mondal* | *Code, research* | 
 | *Ahana Das* | *Research, Design* |
 | *Devarshi Joshi* | *Research* |
 ---
